@@ -1,0 +1,4 @@
+# Cache js, css and image files for one week
+<filesMatch ".(js|css|jpg|jpeg|png|ico)$">
+Header set Cache-Control "max-age=604800,public"
+</filesMatch>
