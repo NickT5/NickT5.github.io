@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
 
+html{
+    scroll-behavior: smooth;
+}
+
 /*-- Navigation Start --*/
 .navbar{
     text-transform: uppercase;
