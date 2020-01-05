@@ -80,6 +80,12 @@ html{
  .card-title a:hover{
      text-decoration: none;
  }
+
+ .card-note{
+    font-style: italic;
+    font-size: 85%;
+    margin: 0;
+ }
 /*-- Projects End --*/
 
 /*-- Footer Start --*/
