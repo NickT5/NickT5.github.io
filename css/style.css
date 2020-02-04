@@ -88,6 +88,44 @@ html{
     font-size: 85%;
     margin: 0;
  }
+
+/* Zoom effect */
+.zoom-effect{
+    overflow: hidden;
+}
+.zoom-effect img{
+    transition: all 0.8s ease;
+}
+.zoom-effect:hover img{
+    transform: scale(1.3);
+}
+
+/* Overlay effect */
+.overlay-effect{
+    position: relative;
+}
+.overlay-text{
+    opacity: 0; /*= hidden */
+    position: absolute;
+    top: 0; left: 0;
+    bottom: 0; right: 0;
+    background-color: rgba(101, 201, 255, 1.0); /*= #65c9ff; = light blue*/
+    text-align: center;
+    line-height: 200px;
+    vertical-align: middle;
+    transition: opacity 1.0;
+    -webkit-transition: opacity 1.0s;
+    -moz-transition: opacity 1.0;
+}
+.overlay-text:hover{
+    opacity: 1;  /*= visible */
+}
+.overlay-text h4{
+    color: white;
+    display: inline-table;
+}
+
+
 /*-- Projects End --*/
 
 /*-- Footer Start --*/
