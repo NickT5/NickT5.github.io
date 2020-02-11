@@ -120,12 +120,16 @@ html{
     transition: opacity 1.0s;
     -webkit-transition: opacity 1.0s;
     -moz-transition: opacity 1.0;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 .overlay-text h4{
-    letter-spacing: 1px;
     font-size: 1.1415926rem;
-    text-transform: uppercase;
     font-weight: 650;
+}
+.overlay-text p{
+    font-weight: 500;
 }
 
 
