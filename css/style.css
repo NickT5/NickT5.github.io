@@ -104,26 +104,30 @@ html{
 .overlay-effect{
     position: relative;
 }
+.overlay-effect:hover .overlay-text{
+    opacity: 0.95;
+}
 .overlay-text{
-    opacity: 0; /*= hidden */
+    color: white;
     position: absolute;
-    top: 0; left: 0;
-    bottom: 0; right: 0;
-    background-color: rgba(101, 201, 255, 1.0); /*= #65c9ff; = light blue*/
+    top: 0;
+    width: 100%;
     text-align: center;
-    line-height: 200px;
-    vertical-align: middle;
-    transition: opacity 1.0;
+    padding-top: 20%;
+    height: 100%;
+    background-color: rgba(101, 201, 255, 1.0); /*= #65c9ff; = light blue*/
+    opacity: 0;
+    transition: opacity 1.0s;
     -webkit-transition: opacity 1.0s;
     -moz-transition: opacity 1.0;
 }
-.overlay-text:hover{
-    opacity: 1;  /*= visible */
-}
 .overlay-text h4{
-    color: white;
-    display: inline-table;
+    letter-spacing: 1px;
+    font-size: 1.1415926rem;
+    text-transform: uppercase;
+    font-weight: 650;
 }
+
 
 
 /*-- Projects End --*/
