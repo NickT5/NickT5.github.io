@@ -1,0 +1,175 @@
+<!-- https://getbootstrap.com/docs/4.0/examples/blog/ -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Nick">
+    <link rel="icon" href="">
+    <title>Breakdown - Twitter Bot</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">
+    <!-- Code snippet highlighter -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/androidstudio.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="css/breakdown.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8 blog-main">
+          <h1 style="color: brown;">Work in Progress</h1>
+          <h3 class="pb-3 mb-4 font-italic border-bottom">
+            <a href="index.html">Go back</a>
+          </h3>
+
+          <div class="blog-post">
+            <h1 class="blog-post-title">Twitter Bot</h1>
+            <p class="blog-post-meta">July 2020 by Nick</p>
+
+            <p><a href="https://twitter.com/OfficialHibot" target="_blank" rel="noopener noreferrer"><i>Hibot</i></a> is a Twitter bot which can tweet a message in 100+ different languages.
+              For now, Hibot tweets <i>hello</i> every day in another language. 
+              It runs on my Raspberry Pi which is configured to execute the script every day 
+              at 19:00 GMT+1. I might switch up the message in the future. We'll see.</p>
+              <a href="https://twitter.com/OfficialHibot" target="_blank" rel="noopener noreferrer"><img src="img/official-hibot.png" class="img-fluid"></a>
+            <hr>
+            
+            <h2>Project Breakdown</h2>
+            <ol>
+              <li>Twitter API</li>
+              <li>Translator</li>
+              <li>Language picker</li>
+              <li>Scheduler</li>
+            </ol>
+
+            <h3>1. Twitter API</h3>
+            <p>Install and import <a href="https://www.tweepy.org/" target="_blank" rel="noopener noreferrer">tweepy</a>. This is a Python library to access the Twitter API.</p>
+            <pre><code class="language-python" style="font-size: smaller;">import tweepy  # pip install tweepy</code></pre>
+            <p>Authenticate the Python script with your Twitter account using keys & tokens. These can be generated if you upgrade your account to a <a href="https://developer.twitter.com/en/products/twitter-api" target="_blank" rel="noopener noreferrer">developer account</a>.</p>
+            <pre><code class="language-python" style="font-size: smaller;">API_KEY = os.environ.get("TWITTER_API_KEY")
+API_SECRET_KEY = os.environ.get("TWITTER_API_SECRET_KEY")
+ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
+ACCESS_SECRET_TOKEN = os.environ.get("TWITTER_ACCESS_SECRET_TOKEN")
+      
+if API_KEY is None or API_SECRET_KEY is None:
+  exit("API KEYS are None!")
+if ACCESS_TOKEN is None or ACCESS_SECRET_TOKEN is None:
+  exit("ACCESS TOKENS are None!")
+      
+auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET_TOKEN)</code></pre>
+
+<p>Tweet a tweet with the <i>update_status()</i> method.</i></p>            
+<pre><code class="language-python" style="font-size: smaller;">api = tweepy.API(auth)
+message = "I'm tweeting a tweet"
+api.update_status(message)</code></pre>
+    
+            <h3>2. Translator</h3>
+            <p>Install and import <a href="https://pypi.org/project/googletrans/" target="_blank" rel="noopener noreferrer">googletrans</a>. </p>
+            <pre><code class="language-python" style="font-size: smaller;">from googletrans import Translator  # pip install googletrans</code></pre>
+
+            Translate a message in English to a destination language. Languages are chosen using their language codes. 
+            <pre><code class="language-python" style="font-size: smaller;">msg = "hello"
+translator = Translator()
+translated = translator.translate(msg, src="en", dest=language_code)</code></pre>
+            
+            <h3>3. Language picker</h3>
+            <p>The destination language is different each time. I've made a LanguagePicker class which reads & writes an index from/to a file. The index is used to decide which destination language to pick, from a dictionary with all the supported languages and their corresponding language code.</p>
+            <pre><code class="language-python" style="font-size: smaller;">@staticmethod
+def get_languages():
+    """
+    Language dictionary like googletrans.LANGUAGES but without the old duplicated languages.
+    :return: All languages with their code
+    :rtype: dict
+    """
+    return {
+        'af': 'afrikaans',
+        'sq': 'albanian',
+        'am': 'amharic',</code></pre>
+
+            
+        <h3>4. Scheduler</h3>
+        <p>The codebase is copied to my Raspberry Pi. To run the script automatically every day, a new crontab is configured. Crontab is a unix command to execute a program or script periodically on a given schedule. </p>
+        <p>Run the <i>crontab -e</i> command to edit.</p>
+        <pre><code class="language-python" style="font-size: smaller;">pi@raspberrypi:~ $ crontab -e</code></pre>
+        Tell the crontab what script to execute, with which Python executable and with which schedule. <a href="https://crontab.guru/" target="_blank" rel="noopener noreferrer">Crontab guru</a> is a helpful website to set the schedule.<pre><code class="language-python" style="font-size: smaller;"># Run python script every day at 19:00
+0 19 * * * . $HOME/.profile; ~/Documents/hibot/venv/bin/python3 ~/Documents/hibot/main.py</code></pre>
+        <p>The Twitter secret keys & tokens are set as environment variables in the <i>~/.profile</i> file.</p>
+        <pre><code class="language-python" style="font-size: smaller;">export TWITTER_API_KEY=
+export TWITTER_API_SECRET_KEY=
+export TWITTER_ACCESS_TOKEN=
+export TWITTER_ACCESS_SECRET_TOKEN=</code></pre>
+        <p>The cron job knows nothing about the environment. That's why <i><code>. $HOME/.profile;</code></i> is set before executing the python script.</p>
+        </div>
+        
+        <!-- /.blog-post -->
+
+          <nav class="blog-pagination">
+            <a class="btn btn-outline-primary" href="#">Previous</a>
+            <a class="btn btn-outline-secondary disabled" href="#">Next</a>
+          </nav>
+
+        </div><!-- /.blog-main -->
+
+        <!-- blog sidebar -->
+        <aside class="col-md-4 blog-sidebar">
+          <div class="p-3 mb-3 bg-light rounded">
+            <h4 class="font-italic">About</h4>
+            <p class="mb-0">Project breakdowns are Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+
+          <div class="p-3">
+            <h4 class="font-italic">All Project Breakdowns</h4>
+            <ol class="list-unstyled mb-0">
+              <li><a href="#">Hebrew Letter Classifier</a></li>
+              <li><a href="#">Twitter Bot</a></li>
+              <li><a href="#">RMNDR</a></li>
+              <li><a href="#">Anonymize</a></li>
+              <li><a href="#">Seen Or Not Seen</a></li>
+            </ol>
+          </div>
+
+        </aside><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </main><!-- /.container -->
+
+    <footer class="blog-footer">
+      <p>Project breakdown - Twitter Bot</a></p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
+
+  <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
