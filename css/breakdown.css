@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
+
+
+html{
+  scroll-behavior: smooth;
+}
+
+/*
+nxtpps
+font-size: 15px;
+font-family: Hind; https://fonts.google.com/specimen/Hind
+font-weight: 400;
+line-height: 28px;
+letter-spacing: 0px;
+*/
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "Playfair Display", Georgia, "Times New Roman", serif;
 }
@@ -68,6 +84,16 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2rem;
 }
 
+ #icon-bg-f{
+  color: brown;
+}
+ #icon-fg-f{
+  color: white;
+}
+#icon-to-top:hover > #icon-fg-f{ color:brown;}
+#icon-to-top:hover > #icon-bg-f{ color: white;}
+
+
 /*
  * Blog posts
  */
@@ -95,4 +121,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
+}
+
+.mySidebar{
+  font-family: 'Bree Serif', serif;
 }
