@@ -8,6 +8,9 @@
     <meta name="author" content="Nick">
     <link rel="icon" href="">
     <title>Breakdown - Twitter Bot</title>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">  
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">
     <!-- Code snippet highlighter -->
@@ -22,7 +25,7 @@
     <link href="../css/breakdown.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body id="page-top" data-spy="scroll">
     <main role="main" class="container">
       <!-- navbar start -->
       <nav id="myNavbar" class="navbar navbar-expand-lg navbar-light">
@@ -39,7 +42,7 @@
                     <a href="/index.html#projects" class="nav-link">Projects</a>
                 </li>
                 <li class="nav-item">
-                  <a href="/index.html#breakdowns" class="nav-link">Breakdowns</a>
+                  <a href="/index.html#breakdowns" class="nav-link"><span style="color: brown;">Breakdowns</span></a>
                 </li>
                 <li class="nav-item">
                   <a href="/index.html#about" class="nav-link">About</a>
@@ -141,7 +144,7 @@ export TWITTER_ACCESS_SECRET_TOKEN=</code></pre>
           <nav class="blog-pagination">
             <a class="btn btn-outline-primary" href="#">Previous</a>
             <a class="btn btn-outline-secondary disabled" href="#">Next</a>
-            <a class="" href="#" style="float: right;">
+            <a class="" href="#page-top" style="float: right;">
               <span id="icon-to-top" class="fa-stack fa-1x">
                 <i id="icon-bg-f"  class="fas fa-circle fa-stack-2x"></i>
                 <i id="icon-fg-f" class="fas fa-angle-up fa-stack-1x"></i>
@@ -165,7 +168,6 @@ export TWITTER_ACCESS_SECRET_TOKEN=</code></pre>
               <li><a href="#">Twitter Bot</a></li>
               <li><a href="#">RMNDR</a></li>
               <li><a href="#">Anonymize</a></li>
-              <li><a href="#">Seen Or Not Seen</a></li>
             </ol>
           </div>
 
@@ -178,7 +180,7 @@ export TWITTER_ACCESS_SECRET_TOKEN=</code></pre>
     <footer class="blog-footer">
       <p>Project breakdown - Twitter Bot</p>
       <p>
-        <a href="#">Back to top</a>
+        <a href="#page-top">Back to top</a>
       </p>
     </footer>
 

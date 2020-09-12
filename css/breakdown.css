@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@600&display=swap');
 
 html{
   scroll-behavior: smooth;
@@ -47,9 +47,10 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   font-weight: 700;
   font-size: .9rem;
-  letter-spacing: .1rem;
+  letter-spacing: .08rem;
   margin-bottom: 1rem;
   border-bottom: .05rem solid #e5e5e5;
+  font-family: 'Hind';
 }
 
 .border-top { border-top: 1px solid #e5e5e5; }
@@ -123,6 +124,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
 }
 
-.mySidebar{
+.mySidebar h4{
   font-family: 'Bree Serif', serif;
 }

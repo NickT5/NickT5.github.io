@@ -4,6 +4,11 @@ html{
     scroll-behavior: smooth;
 }
 
+/*h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}*/
+
+
 /*-- Navigation Start --*/
 .navbar{
     text-transform: uppercase;
@@ -132,9 +137,32 @@ html{
     font-weight: 500;
 }
 
-
-
 /*-- Projects End --*/
+
+/*-- Breakdowns Start --*/
+#breakdowns{
+    margin: 3rem 0 3rem 0;
+    color: whitesmoke;
+    padding: 1.5rem 0 2rem 0;
+    background: rgb(25, 25, 25);
+    /* https://cssgradient.io/ */   
+}
+#breakdowns a{
+    text-decoration: none;
+    color: #65c9ff;
+}
+#breakdowns a:hover{
+    color: #3c83ff;
+}
+.breakdown-list{
+    margin-top: 2.5rem;
+}
+
+.breakdown-item{
+    margin-bottom: 2rem;
+}
+/*-- Breakdowns End --*/
+
 
 /*-- Footer Start --*/
 footer{
