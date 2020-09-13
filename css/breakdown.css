@@ -52,6 +52,12 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: .05rem solid #e5e5e5;
   font-family: 'Hind';
 }
+.my-nav-item{
+  color: brown;
+}
+.my-nav-item:hover{
+  color: rgb(120, 30, 30);
+}
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
